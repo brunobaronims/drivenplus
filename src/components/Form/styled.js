@@ -9,6 +9,6 @@ export const Input = styled.input`
 
 `;
 
-export const Button = styled.button`
-
+export const ButtonContainer = styled.button`
+  background: #FF4791;
 `;

@@ -8,6 +8,7 @@ import {
 
 import { GlobalStyle } from './globalStyle';
 import Login from './pages/Login';
+import Signup from './pages/Signup';
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Login />
+      },
+      {
+        path: '/sign-up',
+        element: <Signup />
       }
     ]
   }
