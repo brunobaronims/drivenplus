@@ -1,13 +1,18 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useOutletContext } from 'react-router-dom';
 
+import {
+  FormInputs,
+  FormButton,
+  Form
+} from '../../components/Form';
 import {
   Container,
   BottomText
 } from './styled';
-import Form from '../../components/Form';
 
-export default function Register() {
+export default function Signup() {
+  const [state, dispatch] = useOutletContext();
   const [inputData, setInputData] = useState({
     Nome: '',
     CPF: '',
@@ -17,10 +22,17 @@ export default function Register() {
 
   return (
     <Container>
-      <Form
-        inputData={inputData}
-        setInputData={setInputData}
-      />
+      <Form>
+        <FormInputs
+          enabled={!state.isLoading}
+          inputData={inputData}
+          setInputData={setInputData}
+        />
+        <FormButton
+          enabled={!state.isLoading}
+          text='ENTRAR'
+        />
+      </Form>
       <BottomText>
         Já possui uma conta?&nbsp;
         <Link to='/'>

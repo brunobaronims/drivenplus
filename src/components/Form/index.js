@@ -4,39 +4,43 @@ import {
   ButtonContainer
 } from './styled';
 
-function Button() {
+export function FormButton({ enabled, text }) {
   return (
-    <ButtonContainer />
+    <ButtonContainer
+      enabled={enabled}
+      type='submit'
+    >
+      {text}
+    </ButtonContainer>
   );
 }
 
-function Inputs({ inputData, setInputData }) {
+export function FormInputs({ inputData, setInputData, enabled }) {
   return (
     Object.entries(inputData).map(i => {
       return (
         <Input
+          enabled={enabled}
           key={i[0]}
           type='text'
           placeholder={i[0]}
           value={inputData[i[0]]}
-          onChange={(e) => setInputData({
-            ...inputData, [i[0]]: e.target.value
-          })}
+          onChange={(e) => {
+            (enabled) ? setInputData({
+              ...inputData,
+              [i[0]]: e.target.value
+            }) : setInputData({ ...inputData })
+          }}
         />
       );
     })
   );
 };
 
-export default function Form({ inputData, setInputData, formType }) {
+export function Form({ children }) {
   return (
     <FormContainer>
-      <Inputs
-        inputData={inputData}
-        setInputData={setInputData}
-        value='Lost'
-      />
-      <Button />
+      {children}
     </FormContainer>
   );
 };

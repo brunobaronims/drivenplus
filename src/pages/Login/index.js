@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useOutletContext } from 'react-router-dom';
 
 import logo from '../../assets/login_logo.svg';
 import {
@@ -7,9 +7,14 @@ import {
   Header,
   BottomText
 } from './styled';
-import Form from '../../components/Form';
+import {
+  FormInputs,
+  FormButton,
+  Form
+} from '../../components/Form';
 
 export default function Login() {
+  const [state, dispatch] = useOutletContext();
   const [inputData, setInputData] = useState({
     "E-mail": "",
     Senha: ""
@@ -18,10 +23,19 @@ export default function Login() {
   return (
     <Container>
       <Header src={logo} />
-      <Form
-        inputData={inputData}
-        setInputData={setInputData}
-      />
+      <Form>
+        <FormInputs 
+          enabled={!state.isLoading}
+          inputData={inputData}
+          setInputData={setInputData}
+        />
+        <FormButton
+          url='https://mock-api.driven.com.br/api/v4/driven-plus/auth/login' 
+          dispatch={dispatch}
+          enabled={!state.isLoading}
+          text='CADASTRAR'
+        />
+      </Form>
       <BottomText>
         Não possui uma conta?&nbsp;
         <Link to='/sign-up'>

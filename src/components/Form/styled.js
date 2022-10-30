@@ -11,4 +11,5 @@ export const Input = styled.input`
 
 export const ButtonContainer = styled.button`
   background: #FF4791;
+  color: #FFF;
 `;
