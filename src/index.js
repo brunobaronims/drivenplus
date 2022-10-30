@@ -9,6 +9,7 @@ import {
 import { GlobalStyle } from './globalStyle';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import Subscriptions, { loader as subscriptionsLoader } from './pages/Subscriptions';
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,11 @@ const router = createBrowserRouter([
       {
         path: '/sign-up',
         element: <Signup />
+      },
+      {
+        path: '/subscriptions',
+        loader: subscriptionsLoader,
+        element: <Subscriptions />
       }
     ]
   }

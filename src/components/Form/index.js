@@ -37,9 +37,11 @@ export function FormInputs({ inputData, setInputData, enabled }) {
   );
 };
 
-export function Form({ children }) {
+export function Form({ children, submit, data, dispatch, state, navigate }) {
   return (
-    <FormContainer>
+    <FormContainer onSubmit={
+      (e) => submit(e, data, dispatch, state, navigate)
+    }>
       {children}
     </FormContainer>
   );

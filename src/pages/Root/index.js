@@ -7,7 +7,22 @@ const initialState = {
 };
 
 function reducer(state, { type, payload }) {
-  return state;
+  switch (type) {
+    case 'FORM_SUBMIT':
+      return (
+        { ...state, isLoading: 1 }
+      );
+    case 'RESPONSE_RESOLVED':
+      return (
+        { ...state, isLoading: 0 }
+      );
+    case 'LOGIN_SUCCESS':
+      return (
+        { ...state, userData: payload }
+      );
+    default:
+      throw new Error();
+  }
 };
 
 export default function Root() {
