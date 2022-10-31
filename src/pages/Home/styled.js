@@ -9,17 +9,19 @@ export const Container = styled.div`
 
 export const Header = styled.header`
   width: 100%;
+  padding: 1.4rem 1.6rem;
 `;
 
 export const NavIcons = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 `;
 
 export const HeaderLogo = styled.img`
-  height: auto;
-  width: 2rem;
+  height: 2.6rem;
+  width: auto;
 `;
 
 export const ProfileImage = styled.img`
@@ -31,11 +33,14 @@ export const ProfileImage = styled.img`
 export const HeaderText = styled.h1`
   color: #FFF;
   text-align: center;
+  margin-top: 1rem;
+  font-size: 1.6rem;
 `;
 
 export const Perks = styled.ul`
   display: flex;
   flex-direction: column;
+  padding: 1rem 0 14.5rem 0;
 `;
 
 export const Perk = styled.a`
@@ -45,9 +50,13 @@ export const Perk = styled.a`
   justify-content: center;
   color: #FFF;
   text-decoration: none;
-  height: 2rem;
+  height: 3rem;
   width: 18rem;
   border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
 `;
 
 export const ChangePlan = styled.button`
@@ -57,9 +66,12 @@ export const ChangePlan = styled.button`
   justify-content: center;
   color: #FFF;
   text-decoration: none;
-  height: 2rem;
+  height: 3rem;
   width: 18rem;
   border-radius: 0.5rem;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
 `;
 
 export const DeletePlan = styled.button`
@@ -69,7 +81,11 @@ export const DeletePlan = styled.button`
   justify-content: center;
   color: #FFF;
   text-decoration: none;
-  height: 2rem;
+  height: 3rem;
   width: 18rem;
   border-radius: 0.5rem;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-top: 0.5rem;
 `;
