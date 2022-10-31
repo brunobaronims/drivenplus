@@ -29,7 +29,7 @@ async function checkCache(dispatch, navigate, state) {
       type: 'LOGIN_SUCCESS',
       payload: newData
     });
-    if (newData.membership) 
+    if (newData.membership !== null) 
       return navigate('/home');
     return navigate('/subscriptions');
   } catch (e) {
@@ -45,7 +45,7 @@ async function submit(e, data, dispatch, state, navigate) {
   dispatch({ type: 'FORM_SUBMIT' });
   try {
     const response = await axios.post(
-      'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login',
+      'https://mock-api.bootcamp.respondeai.com.br/api/v4/driven-plus/auth/login',
       data);
     const newData = await response.data;
     localStorage.setItem('drivenplus-cache', JSON.stringify(newData));

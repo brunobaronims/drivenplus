@@ -32,30 +32,29 @@ async function deletePlan(navigate, dispatch, token) {
 }
 
 export default function Home() {
-  const [{ planData }, dispatch] = useOutletContext();
-  const userData = JSON.parse(localStorage.getItem('drivenplus-cache'));
+  const [ state, dispatch] = useOutletContext();
   const navigate = useNavigate();
-  const loggedIn = localStorage.getItem('drivenplus-cache');
   
   useEffect(() => {
-    if (!loggedIn) 
+    if (!state.loggedIn) 
       return navigate('/');
   })
-
+  if (!state.loggedIn) 
+    return null;
   return (
     <Container>
       <Header>
         <NavIcons>
-          <HeaderLogo src={userData.membership.image} />
-          <ProfileImage src={userData.image} />
+          <HeaderLogo src={state.userData.membership.image} />
+          <ProfileImage src={state.userData.image} />
         </NavIcons>
         <HeaderText>
-          Olá, {userData.name}
+          Olá, {state.userData.name}
         </HeaderText>
       </Header>
       <Perks>
         {
-          userData.membership.perks.map(perk => {
+          state.userData.membership.perks.map(perk => {
             return (
               <Perk
                 key={perk.id}
@@ -72,7 +71,7 @@ export default function Home() {
           Mudar plano
         </ChangePlan>
       </Link>
-      <DeletePlan onClick={() => deletePlan(navigate, dispatch, userData.token)}>
+      <DeletePlan onClick={() => deletePlan(navigate, dispatch, state.userData.token)}>
         Cancelar plano
       </DeletePlan>
     </Container>

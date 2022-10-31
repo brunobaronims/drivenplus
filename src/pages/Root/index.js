@@ -23,7 +23,7 @@ function reducer(state, { type, payload }) {
       );
     case 'SUBSCRIPTION_SUCCESS':
       return (
-        { ...state, isLoading: 0, planData: payload }
+        { ...state, isLoading: 0, ['userData'['membership']]: payload }
       );
     default:
       throw new Error();
@@ -32,7 +32,7 @@ function reducer(state, { type, payload }) {
 
 export default function Root() {
   const [state, dispatch] = useReducer(reducer, initialState);
-
+  console.log(state);
   return (
     <Container>
       <Outlet context={[state, dispatch]} />
