@@ -37,10 +37,17 @@ export const HeaderText = styled.h1`
   font-size: 1.6rem;
 `;
 
+export const LinksContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+`;
+
 export const Perks = styled.ul`
   display: flex;
   flex-direction: column;
-  padding: 1rem 0 14.5rem 0;
+  padding-top: 1rem;
 `;
 
 export const Perk = styled.a`
@@ -57,6 +64,12 @@ export const Perk = styled.a`
   font-family: 'Roboto', sans-serif;
   font-size: 1rem;
   font-weight: 700;
+`;
+
+export const BottomLinks = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.6rem;
 `;
 
 export const ChangePlan = styled.button`

@@ -11,7 +11,9 @@ import {
   Perk,
   ChangePlan,
   DeletePlan,
-  Container
+  Container,
+  LinksContainer,
+  BottomLinks
 } from './styled';
 import { useEffect } from "react";
 
@@ -52,28 +54,32 @@ export default function Home() {
           Olá, {state.userData.name}
         </HeaderText>
       </Header>
-      <Perks>
-        {
-          state.userData.membership.perks.map(perk => {
-            return (
-              <Perk
-                key={perk.id}
-                href={perk.link}
-              >
-                {perk.title}
-              </Perk>
-            );
-          })
-        }
-      </Perks>
-      <Link to='/subscriptions'>
-        <ChangePlan>
-          Mudar plano
-        </ChangePlan>
-      </Link>
-      <DeletePlan onClick={() => deletePlan(navigate, dispatch, state.userData.token)}>
-        Cancelar plano
-      </DeletePlan>
+      <LinksContainer>
+        <Perks>
+          {
+            state.userData.membership.perks.map(perk => {
+              return (
+                <Perk
+                  key={perk.id}
+                  href={perk.link}
+                >
+                  {perk.title}
+                </Perk>
+              );
+            })
+          }
+        </Perks>
+        <BottomLinks>
+          <Link to='/subscriptions'>
+            <ChangePlan>
+              Mudar plano
+            </ChangePlan>
+          </Link>
+          <DeletePlan onClick={() => deletePlan(navigate, dispatch, state.userData.token)}>
+            Cancelar plano
+          </DeletePlan>
+        </BottomLinks>
+      </LinksContainer>
     </Container>
   );
 }
