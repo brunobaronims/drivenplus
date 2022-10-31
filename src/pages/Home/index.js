@@ -36,9 +36,10 @@ export default function Home() {
   const userData = JSON.parse(localStorage.getItem('drivenplus-cache'));
   const navigate = useNavigate();
   const loggedIn = localStorage.getItem('drivenplus-cache');
-
+  
   useEffect(() => {
-    return loggedIn || navigate('/');
+    if (!loggedIn) 
+      return navigate('/');
   })
 
   return (

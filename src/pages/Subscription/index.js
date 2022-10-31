@@ -170,9 +170,9 @@ export default function Subscription() {
   const navigate = useNavigate();
   const loggedIn = localStorage.getItem('drivenplus-cache');
   
-
   useEffect(() => {
-    return loggedIn || navigate('/');
+    if (!loggedIn) 
+      return navigate('/');
   })
 
   return (

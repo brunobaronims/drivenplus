@@ -54,7 +54,8 @@ export default function SubscriptionsList() {
   const loggedIn = localStorage.getItem('drivenplus-cache');
   
   useEffect(() => {
-    return loggedIn || navigate('/');
+    if (!loggedIn) 
+      return navigate('/');
   })
 
   return (
