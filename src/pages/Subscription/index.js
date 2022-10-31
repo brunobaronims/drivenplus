@@ -59,8 +59,7 @@ async function submit(e, data, dispatch, state, navigate) {
       config
     );
     const newData = await response.data;
-    localStorage.setItem('drivenplus-cache', JSON.stringify(newData));
-    dispatch({ type: 'RESPONSE_RESOLVED' });
+    dispatch({ type: 'SUBSCRIPTION_SUCCESS', payload: newData });
     return navigate('/home');
   } catch (e) {
     dispatch({ type: 'RESPONSE_RESOLVED' });

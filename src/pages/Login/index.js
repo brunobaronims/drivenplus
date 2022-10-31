@@ -30,11 +30,11 @@ async function submit(e, data, dispatch, state, navigate) {
       type: 'LOGIN_SUCCESS',
       payload: newData
     });
-    newData.membership ? navigate('/home') :
+    return newData.membership ? navigate('/home') :
       navigate('/subscriptions');
   } catch (e) {
     dispatch({ type: 'RESPONSE_RESOLVED' });
-    throw new Error(e);
+    alert('Não foi possível realizar o login');
   }
 }
 

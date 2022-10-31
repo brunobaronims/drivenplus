@@ -13,6 +13,7 @@ import SubscriptionsList, {
   loader as subscriptionsListLoader
 } from './pages/SubscriptionsList';
 import Subscription, { loader as subscriptionLoader } from './pages/Subscription';
+import Home from './pages/Home';
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
         path: '/subscriptions/:id',
         loader: subscriptionLoader,
         element: <Subscription />
+      },
+      {
+        path: '/home',
+        element: <Home />
       }
     ]
   }
