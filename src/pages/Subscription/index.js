@@ -168,7 +168,7 @@ export default function Subscription() {
   const token = JSON.parse(localStorage.getItem('drivenplus-cache')).token;
   const [modalClosed, setModalClosed] = useState(1);
   const navigate = useNavigate();
-  const loggedIn = localStorage.getItem('trackit-cache');
+  const loggedIn = localStorage.getItem('drivenplus-cache');
   
 
   useEffect(() => {

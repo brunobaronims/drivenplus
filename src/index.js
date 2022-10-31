@@ -9,9 +9,7 @@ import {
 import { GlobalStyle } from './globalStyle';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import SubscriptionsList, {
-  loader as subscriptionsListLoader
-} from './pages/SubscriptionsList';
+import SubscriptionsList from './pages/SubscriptionsList';
 import Subscription, { loader as subscriptionLoader } from './pages/Subscription';
 import Home from './pages/Home';
 
@@ -30,7 +28,6 @@ const router = createBrowserRouter([
       },
       {
         path: '/subscriptions',
-        loader: subscriptionsListLoader,
         element: <SubscriptionsList />
       },
       {

@@ -51,11 +51,10 @@ export async function loader() {
 export default function SubscriptionsList() {
   const { plans } = useLoaderData();
   const navigate = useNavigate();
-  const loggedIn = localStorage.getItem('trackit-cache');
+  const loggedIn = localStorage.getItem('drivenplus-cache');
   
   useEffect(() => {
-    if (!loggedIn) 
-      return navigate('/');
+    return loggedIn || navigate('/');
   })
 
   return (

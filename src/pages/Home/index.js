@@ -35,7 +35,7 @@ export default function Home() {
   const [{ planData }, dispatch] = useOutletContext();
   const userData = JSON.parse(localStorage.getItem('drivenplus-cache'));
   const navigate = useNavigate();
-  const loggedIn = localStorage.getItem('trackit-cache');
+  const loggedIn = localStorage.getItem('drivenplus-cache');
 
   useEffect(() => {
     return loggedIn || navigate('/');
