@@ -18,7 +18,7 @@ export const GlobalStyle = createGlobalStyle`
     font-weight: 400;
     background: #0E0E13;
   }
-  ol, ul {
+  ul {
     list-style: none;
   }
   button {

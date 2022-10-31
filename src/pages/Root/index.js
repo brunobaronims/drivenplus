@@ -28,6 +28,8 @@ function reducer(state, { type, payload }) {
 export default function Root() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  
+
   return (
     <Outlet context={[state, dispatch]} />
   );

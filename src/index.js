@@ -9,7 +9,10 @@ import {
 import { GlobalStyle } from './globalStyle';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import Subscriptions, { loader as subscriptionsLoader } from './pages/Subscriptions';
+import SubscriptionsList, {
+  loader as subscriptionsListLoader
+} from './pages/SubscriptionsList';
+import Subscription, { loader as subscriptionLoader } from './pages/Subscription';
 
 const router = createBrowserRouter([
   {
@@ -26,8 +29,13 @@ const router = createBrowserRouter([
       },
       {
         path: '/subscriptions',
-        loader: subscriptionsLoader,
-        element: <Subscriptions />
+        loader: subscriptionsListLoader,
+        element: <SubscriptionsList />
+      },
+      {
+        path: '/subscriptions/:id',
+        loader: subscriptionLoader,
+        element: <Subscription />
       }
     ]
   }

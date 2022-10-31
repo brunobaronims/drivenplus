@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Suspense } from "react";
-import { Await, defer, useAsyncValue, useLoaderData } from "react-router-dom";
+import { Await, defer, Link, useAsyncValue, useLoaderData } from "react-router-dom";
 
 import {
   Container,
@@ -17,12 +17,17 @@ function Plans() {
   return (
     resolvedPlans.map(plan => {
       return (
-        <Item key={plan.id}>
-          <Image src={plan.image} />
-          <PriceText>
-            {plan.price}
-          </PriceText>
-        </Item>
+        <Link
+          to={`/subscriptions/${plan.id}`}
+          key={plan.id}
+        >
+          <Item>
+            <Image src={plan.image} />
+            <PriceText>
+              {plan.price}
+            </PriceText>
+          </Item>
+        </Link>
       );
     })
   );
@@ -43,8 +48,8 @@ export async function loader() {
   });
 }
 
-export default function Subscriptions() {
-  const { plans }= useLoaderData();
+export default function SubscriptionsList() {
+  const { plans } = useLoaderData();
 
   return (
     <Container>
@@ -53,7 +58,7 @@ export default function Subscriptions() {
       </HeaderText>
       <List>
         <Suspense
-        fallback='Carregando planos...'
+          fallback='Carregando planos...'
         >
           <Await resolve={plans.data}>
             <Plans />
