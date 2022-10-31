@@ -1,6 +1,6 @@
 import axios from "axios";
-import { Suspense } from "react";
-import { Await, defer, Link, useAsyncValue, useLoaderData } from "react-router-dom";
+import { Suspense, useEffect } from "react";
+import { Await, defer, Link, useAsyncValue, useLoaderData, useNavigate } from "react-router-dom";
 
 import {
   Container,
@@ -50,6 +50,13 @@ export async function loader() {
 
 export default function SubscriptionsList() {
   const { plans } = useLoaderData();
+  const navigate = useNavigate();
+  const loggedIn = localStorage.getItem('trackit-cache');
+  
+  useEffect(() => {
+    if (!loggedIn) 
+      return navigate('/');
+  })
 
   return (
     <Container>

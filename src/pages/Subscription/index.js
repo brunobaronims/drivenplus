@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Fragment, Suspense, useState } from "react";
+import { Fragment, Suspense, useEffect, useState } from "react";
 import { Await, defer, Link, useAsyncValue, useLoaderData, useNavigate, useOutletContext } from "react-router-dom";
 
 import {
@@ -168,6 +168,12 @@ export default function Subscription() {
   const token = JSON.parse(localStorage.getItem('drivenplus-cache')).token;
   const [modalClosed, setModalClosed] = useState(1);
   const navigate = useNavigate();
+  const loggedIn = localStorage.getItem('trackit-cache');
+  
+
+  useEffect(() => {
+    return loggedIn || navigate('/');
+  })
 
   return (
 

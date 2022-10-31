@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const BottomText = styled.p`
   white-space: pre;
   color: #FFF;
+  font-size: 0.85rem;
 `;
 
 export const Container = styled.div`

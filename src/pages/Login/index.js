@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate, useOutletContext } from 'react-router-dom';
 
 import logo from '../../assets/login_logo.svg';
@@ -13,6 +13,29 @@ import {
   Form
 } from '../../components/Form';
 import axios from 'axios';
+
+async function checkCache(dispatch, navigate, state) {
+  if (!localStorage.getItem('drivenplus-cache') || state.loggedIn)
+    return;
+  const userData = JSON.parse(localStorage.getItem('drivenplus-cache'));
+  try {
+    const response = await axios.post(
+      'https://mock-api.driven.com.br/api/v4/driven-plus/auth/login', {
+      email: userData.email,
+      password: userData.password
+    });
+    const newData = await response.data
+    dispatch({
+      type: 'LOGIN_SUCCESS',
+      payload: newData
+    });
+    if (newData.membership) 
+      return navigate('/home');
+    return navigate('/subscriptions');
+  } catch (e) {
+    console.error(e);
+  }
+};
 
 async function submit(e, data, dispatch, state, navigate) {
   e.preventDefault();
@@ -49,6 +72,10 @@ export default function Login() {
     email: inputData['E-mail'],
     password: inputData.Senha
   };
+
+  useEffect(() => {
+    checkCache(dispatch, navigate, state);
+  })
 
   return (
     <Container>

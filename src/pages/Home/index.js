@@ -13,6 +13,7 @@ import {
   DeletePlan,
   Container
 } from './styled';
+import { useEffect } from "react";
 
 async function deletePlan(navigate, dispatch, token) {
   dispatch({ type: 'FORM_SUBMIT' });
@@ -36,15 +37,15 @@ export default function Home() {
   const navigate = useNavigate();
   const loggedIn = localStorage.getItem('trackit-cache');
 
-  //useEffect(() => {
-  //  loggedIn || navigate('/');
-  //})
+  useEffect(() => {
+    return loggedIn || navigate('/');
+  })
 
   return (
     <Container>
       <Header>
         <NavIcons>
-          <HeaderLogo src={planData.image} />
+          <HeaderLogo src={userData.membership.image} />
           <ProfileImage src={userData.image} />
         </NavIcons>
         <HeaderText>
@@ -53,7 +54,7 @@ export default function Home() {
       </Header>
       <Perks>
         {
-          planData.perks.map(perk => {
+          userData.membership.perks.map(perk => {
             return (
               <Perk
                 key={perk.id}
