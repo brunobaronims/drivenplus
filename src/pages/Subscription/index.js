@@ -18,13 +18,14 @@ import {
   Price,
   InputsTop,
   InputsBottom,
-  ModalContainer,
+  ModalBox,
   ModalText,
   FormButton,
   ModalReturn,
   ButtonContainer,
   ModalConfirm,
-  NavButtons,
+  ModalContainer,
+  NavButton,
   CloseModalButton
 } from "./styled";
 import ReturnButtonImage from '../../assets/return_button.svg';
@@ -71,7 +72,7 @@ function Modal({ enabled, text, modalClosed, setModalClosed }) {
   const resolvedPlan = useAsyncValue();
 
   return (
-    <ModalContainer>
+    <ModalBox>
       <ModalText>
         Tem certeza que deseja assinar o plano
         Driven Plus (R$ {resolvedPlan.price.replace('.', ',')})?
@@ -95,7 +96,7 @@ function Modal({ enabled, text, modalClosed, setModalClosed }) {
           />
         </ModalConfirm>
       </ButtonContainer>
-    </ModalContainer>
+    </ModalBox>
   );
 }
 
@@ -173,24 +174,14 @@ export default function Subscription() {
     <MainContainer
       modalClosed={modalClosed}
     >
-      <NavButtons>
+      <NavButton>
         {
           state.isLoading ? <ReturnButton src={ReturnButtonImage} /> :
             <Link to='/subscriptions'>
               <ReturnButton src={ReturnButtonImage} />
             </Link>
         }
-        {
-          modalClosed ? null :
-            <CloseModalButton
-              onClick={
-                (state.isLoading) ? undefined :
-                  (() => setModalClosed(1))
-              }
-              src={CloseButtonImage}
-            />
-        }
-      </NavButtons>
+      </NavButton>
       <Suspense
         fallback='Carregando plano selecionado...'
       >
@@ -218,12 +209,18 @@ export default function Subscription() {
           >
             {
               (modalClosed) ? null :
-                <Modal
-                  enabled={!state.isLoading}
-                  text='Sim'
-                  modalClosed={modalClosed}
-                  setModalClosed={setModalClosed}
-                />
+                <ModalContainer>
+                  <CloseModalButton
+                    onClick={(() => setModalClosed(1))}
+                    src={CloseButtonImage}
+                  />
+                  <Modal
+                    enabled={!state.isLoading}
+                    text='Sim'
+                    modalClosed={modalClosed}
+                    setModalClosed={setModalClosed}
+                  />
+                </ModalContainer>
             }
             <InputsTop>
               <FormInputs

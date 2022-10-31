@@ -6,15 +6,10 @@ export const MainContainer = styled.div`
   align-items: center;
   height: 100vh;
   width: 100%;
-
-  & {
-  opacity: ${props => props.modalClosed ? 'initial' : '50%'}
-  }
 `;
 
-export const NavButtons = styled.div`
+export const NavButton = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
   width: 100%;
   padding: 0 1.2rem;
@@ -25,11 +20,14 @@ export const NavButtons = styled.div`
 `;
 
 export const ReturnButton = styled.img`
-
+  
 `;
 
 export const CloseModalButton = styled.img`
-
+  height: auto;
+  width: 2rem;
+  margin-top: 1rem;
+  margin-left: 18.6rem;
 `;
 
 export const PlanLogo = styled.img`
@@ -129,15 +127,24 @@ export const FormButton = styled.button`
 export const ModalContainer = styled.div`
   display: flex;
   flex-direction: column;
-  background: #FFF;
   position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0,0,0,0.7);
+`;
+
+export const ModalBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  background: #FFF;
   height: 10rem;
   width: 13rem;
-  top: calc(50% - 5rem);
-  left: calc(50% - 6.5rem);
   border-radius: 0.6rem;
   padding: 0.5rem 1.2rem;
   justify-content: space-between;
+  margin: auto;
   
   &&& {
     opacity: 100%;
