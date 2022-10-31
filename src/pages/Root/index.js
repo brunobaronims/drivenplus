@@ -19,7 +19,7 @@ function reducer(state, { type, payload }) {
       );
     case 'LOGIN_SUCCESS':
       return (
-        { ...state, userData: payload }
+        { ...state, isLoading: 0, userData: payload }
       );
     default:
       throw new Error();

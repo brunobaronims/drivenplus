@@ -40,8 +40,8 @@ export const ButtonContainer = styled.button`
   border: none;
   border-radius: 0.3rem;
   height: 2.7rem;
-  width: 18rem;
-  margin: 0.5rem 0 1.4rem 0;
+  width: ${props => props.small ? '5rem' : '18rem'};
+  margin: ${props => props.small ? '0' : '0.5rem 0 1.4rem 0'};
   font-family: 'Roboto', sans-serif;
   font-weight: 700;
   font-size: 1rem;

@@ -4,11 +4,12 @@ import {
   ButtonContainer
 } from './styled';
 
-export function FormButton({ enabled, text }) {
+export function FormButton({ enabled, text, size }) {
   return (
     <ButtonContainer
       enabled={enabled}
       type='submit'
+      small={(size === 'small')}
     >
       {text}
     </ButtonContainer>

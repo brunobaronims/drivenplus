@@ -68,10 +68,6 @@ async function submit(e, data, dispatch, state, navigate) {
   }
 }
 
-function closeModal(setModalClosed) {
-  return setModalClosed(1);
-}
-
 function Modal({ enabled, text, modalClosed, setModalClosed }) {
   const resolvedPlan = useAsyncValue();
 
@@ -84,7 +80,11 @@ function Modal({ enabled, text, modalClosed, setModalClosed }) {
       <ButtonContainer>
         <ModalReturn
           type='button'
-          onClick={() => setModalClosed(!modalClosed)}
+          enabled={enabled}
+          onClick={
+            (!enabled) ? undefined :
+              (() => setModalClosed(1))
+          }
         >
           Não
         </ModalReturn>
@@ -92,6 +92,7 @@ function Modal({ enabled, text, modalClosed, setModalClosed }) {
           <ModalSubmit
             enabled={enabled}
             text={text}
+            size='small'
           />
         </ModalConfirm>
       </ButtonContainer>
@@ -174,13 +175,19 @@ export default function Subscription() {
       modalClosed={modalClosed}
     >
       <NavButtons>
-        <Link to='/subscriptions'>
-          <ReturnButton src={ReturnButtonImage} />
-        </Link>
+        {
+          state.isLoading ? <ReturnButton src={ReturnButtonImage} /> :
+            <Link to='/subscriptions'>
+              <ReturnButton src={ReturnButtonImage} />
+            </Link>
+        }
         {
           modalClosed ? null :
             <CloseModalButton
-              onClick={() => closeModal(setModalClosed)}
+              onClick={
+                (state.isLoading) ? undefined :
+                  (() => setModalClosed(1))
+              }
               src={CloseButtonImage}
             />
         }
@@ -198,7 +205,7 @@ export default function Subscription() {
                   membershipId: plan.data.id,
                   cardName: topInputsData['Nome impresso no cartão'],
                   cardNumber: topInputsData['Dígitos do cartão'],
-                  securityNumber: Number(bottomInputsData['Código de segurança']),
+                  securityNumber: bottomInputsData['Código de segurança'],
                   expirationDate: bottomInputsData['Validade']
                 },
                 headers: {

@@ -127,12 +127,17 @@ export const FormButton = styled.button`
 `;
 
 export const ModalContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   background: #FFF;
   position: fixed;
-  height: 8rem;
-  width: 12rem;
-  top: calc(50% - 4rem);
-  left: calc(50% - 6rem);
+  height: 10rem;
+  width: 13rem;
+  top: calc(50% - 5rem);
+  left: calc(50% - 6.5rem);
+  border-radius: 0.6rem;
+  padding: 0.5rem 1.2rem;
+  justify-content: space-between;
   
   &&& {
     opacity: 100%;
@@ -141,15 +146,38 @@ export const ModalContainer = styled.div`
 
 export const ModalText = styled.p`
   color: #000;
+  font-weight: 700;
+  margin-top: 1rem;
 `;
 
 export const ModalReturn = styled.button`
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #CECECE;
+  opacity: ${props => props.enabled ? '1' : '0.6'};
+  cursor: ${props => props.enabled ? 'pointer' : 'initial'};
+  color: #FFF;
+  border: none;
+  border-radius: 0.3rem;
+  height: 2.7rem;
+  width: 5rem;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  &:active {
+    transform: ${props => props.enabled ? 'scale(0.9)' : 'none'};
+  }
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const ButtonContainer = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 `;
 
 export const ModalConfirm = styled.div`
