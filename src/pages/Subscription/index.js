@@ -64,7 +64,7 @@ async function submit(e, data, dispatch, state, navigate) {
     return navigate('/home');
   } catch (e) {
     dispatch({ type: 'RESPONSE_RESOLVED' });
-    throw new Error(e);
+    alert('Não foi possível cadastrar o plano');
   }
 }
 

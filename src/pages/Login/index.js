@@ -33,7 +33,7 @@ async function checkCache(dispatch, navigate, state) {
       return navigate('/home');
     return navigate('/subscriptions');
   } catch (e) {
-    console.error(e);
+    alert('Não foi possível realizar o login');
   }
 };
 
