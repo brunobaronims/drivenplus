@@ -15,11 +15,12 @@ export function FormButton({ enabled, text }) {
   );
 }
 
-export function FormInputs({ inputData, setInputData, enabled }) {
+export function FormInputs({ inputData, setInputData, enabled, size }) {
   return (
     Object.entries(inputData).map(i => {
       return (
         <Input
+          small={(size === 'small')}
           enabled={enabled}
           key={i[0]}
           type='text'

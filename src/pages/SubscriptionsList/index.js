@@ -24,7 +24,7 @@ function Plans() {
           <Item>
             <Image src={plan.image} />
             <PriceText>
-              {plan.price}
+              R$ {plan.price.replace('.', ',')}
             </PriceText>
           </Item>
         </Link>
@@ -54,7 +54,7 @@ export default function SubscriptionsList() {
   return (
     <Container>
       <HeaderText>
-        Escolha seu plano
+        Escolha seu Plano
       </HeaderText>
       <List>
         <Suspense

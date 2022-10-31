@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { useReducer } from 'react';
+import { Container } from "./styled";
 
 const initialState = {
   isLoading: 0,
@@ -31,6 +32,8 @@ export default function Root() {
   
 
   return (
-    <Outlet context={[state, dispatch]} />
+    <Container>
+      <Outlet context={[state, dispatch]} />
+    </Container>
   );
 };

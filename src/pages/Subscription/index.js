@@ -23,9 +23,12 @@ import {
   FormButton,
   ModalReturn,
   ButtonContainer,
-  ModalConfirm
+  ModalConfirm,
+  NavButtons,
+  CloseModalButton
 } from "./styled";
 import ReturnButtonImage from '../../assets/return_button.svg';
+import CloseButtonImage from '../../assets/close_button.svg';
 import PerksImage from '../../assets/perks_image.svg';
 import PriceImage from '../../assets/price_image.svg';
 import {
@@ -43,7 +46,7 @@ async function submit(e, data, dispatch, state, navigate) {
   e.preventDefault();
   if (state.isLoading)
     return;
-  
+
   const config = {
     headers: data.headers
   };
@@ -63,6 +66,10 @@ async function submit(e, data, dispatch, state, navigate) {
     dispatch({ type: 'RESPONSE_RESOLVED' });
     throw new Error(e);
   }
+}
+
+function closeModal(setModalClosed) {
+  return setModalClosed(1);
 }
 
 function Modal({ enabled, text, modalClosed, setModalClosed }) {
@@ -102,31 +109,31 @@ function Plan() {
         <PlanName>
           {resolvedPlan.name}
         </PlanName>
-        <TextContainer>
-          <PerksTitle>
-            <PerksIcon src={PerksImage} />
-            Benefícios:
-          </PerksTitle>
-          <PerksList>
-            {
-              resolvedPlan.perks.map(perk => {
-                return (
-                  <Perk key={perk.id}>
-                    {perk.title}
-                  </Perk>
-                );
-              })
-            }
-          </PerksList>
-          <PriceTitle>
-            <PriceIcon src={PriceImage} />
-            Preço:
-          </PriceTitle>
-          <Price>
-            R$ {resolvedPlan.price.replace('.', ',')} cobrados mensalmente
-          </Price>
-        </TextContainer>
       </Header>
+      <TextContainer>
+        <PerksTitle>
+          <PerksIcon src={PerksImage} />
+          Benefícios:
+        </PerksTitle>
+        <PerksList>
+          {
+            resolvedPlan.perks.map(perk => {
+              return (
+                <Perk key={perk.id}>
+                  {perk.title}
+                </Perk>
+              );
+            })
+          }
+        </PerksList>
+        <PriceTitle>
+          <PriceIcon src={PriceImage} />
+          Preço:
+        </PriceTitle>
+        <Price>
+          R$ {resolvedPlan.price.replace('.', ',')} cobrados mensalmente
+        </Price>
+      </TextContainer>
     </Fragment>
   );
 }
@@ -166,9 +173,18 @@ export default function Subscription() {
     <MainContainer
       modalClosed={modalClosed}
     >
-      <Link to='/subscriptions'>
-        <ReturnButton src={ReturnButtonImage} />
-      </Link>
+      <NavButtons>
+        <Link to='/subscriptions'>
+          <ReturnButton src={ReturnButtonImage} />
+        </Link>
+        {
+          modalClosed ? null :
+            <CloseModalButton
+              onClick={() => closeModal(setModalClosed)}
+              src={CloseButtonImage}
+            />
+        }
+      </NavButtons>
       <Suspense
         fallback='Carregando plano selecionado...'
       >
@@ -215,6 +231,7 @@ export default function Subscription() {
                 inputData={bottomInputsData}
                 setInputData={setBottomInputsData}
                 enabled={!state.isLoading}
+                size='small'
               />
             </InputsBottom>
             <FormButton

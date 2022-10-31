@@ -30,9 +30,8 @@ async function submit(e, data, dispatch, state, navigate) {
       type: 'LOGIN_SUCCESS',
       payload: newData
     });
-    if (newData.membership) 
-      return navigate('/home');
-    return navigate('/subscriptions');
+    newData.membership ? navigate('/home') :
+      navigate('/subscriptions');
   } catch (e) {
     dispatch({ type: 'RESPONSE_RESOLVED' });
     throw new Error(e);
